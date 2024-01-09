@@ -1,0 +1,45 @@
+.footer {
+	background-color: rgb(19, 54, 54);
+	padding: 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	.footer-links {
+		display: flex;
+		justify-content: space-around;
+
+		.email-icon,
+		.phone-icon,
+		.ig-icon,
+		.fb-icon {
+			text-decoration: none;
+			padding: 10px;
+		}
+
+		.email-icon {
+			color: whitesmoke;
+			&:hover {
+				color: red;
+			}
+		}
+		.phone-icon {
+			color: whitesmoke;
+			&:hover {
+				color: greenyellow;
+			}
+		}
+		.ig-icon {
+			color: whitesmoke;
+			&:hover {
+				color: purple;
+			}
+		}
+		.fb-icon {
+			color: whitesmoke;
+			&:hover {
+				color: blue;
+			}
+		}
+	}
+}

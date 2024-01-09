@@ -1,0 +1,12 @@
+.Shop {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+
+	.routes {
+		flex: 2;
+	}
+	footer {
+		text-align: center;
+	}
+}
