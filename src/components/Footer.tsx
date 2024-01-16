@@ -13,6 +13,7 @@ const Footer: React.FC = () => {
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, amet!
 				</h5>
 			</div>
+
 			<div className="footer-links">
 				<a className="email-icon" href="">
 					<EmailIcon />

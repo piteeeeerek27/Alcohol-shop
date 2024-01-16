@@ -5,6 +5,39 @@
 	justify-content: space-around;
 	align-items: center;
 
+	.header-sign {
+		h1 {
+			font-size: 90px;
+			font-weight: 800;
+			color: transparent;
+			position: relative;
+			text-transform: uppercase;
+			text-shadow: 0 10px 3px rgba(0, 0, 0, 0.2);
+			-webkit-text-stroke-width: 6px;
+			-webkit-text-stroke-color: red;
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: rgba(42, 44, 45, 0.1);
+				-webkit-text-stroke-width: 6px;
+				-webkit-text-stroke-color: red;
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: transparent;
+				-webkit-text-stroke-width: 4px;
+				-webkit-text-stroke-color: rgba(255, 251, 251, 0.8);
+			}
+		}
+	}
+
 	.footer-links {
 		display: flex;
 		justify-content: space-around;

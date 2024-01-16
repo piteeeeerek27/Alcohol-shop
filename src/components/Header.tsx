@@ -3,11 +3,7 @@ import "../styles/Header.scss";
 // import { useSelector } from "react-redux";
 // import { RootState } from '../app/store'; // Załóżmy, że plik store.tsx zawiera konfigurację Redux store
 
-interface HeaderProps {
-	// Dodaj dowolne dodatkowe propsy, jeśli są potrzebne
-}
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>("");
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +13,9 @@ const Header: React.FC<HeaderProps> = () => {
 
 	return (
 		<div className="header">
+			<div className="header-sign">
+				<h1>24/7</h1>
+			</div>
 			<div className="navigation">
 				<ul>
 					<li>
@@ -57,15 +56,27 @@ const Header: React.FC<HeaderProps> = () => {
 				</ul>
 			</div>
 			<div className="logo">
-				<h1>LOGO</h1>
+				<img
+					src="https://icons.iconarchive.com/icons/iconarchive/incognito-animals/512/Monkey-Avatar-icon.png"
+					alt="monkeys"
+				/>
 			</div>
 			<div className="search-bar">
-				<input
-					type="text"
-					value={inputValue}
-					onChange={handleInputChange}
-					placeholder="Znajdz produkt"
-				/>
+				<form action="">
+					<input
+						type="text"
+						required
+						className="search-bar--input"
+						value={inputValue}
+						onChange={handleInputChange}
+						placeholder="Znajdz produkt"
+					/>
+					<input
+						className="search-bar--submit-input"
+						type="submit"
+						value="Szukaj"
+					/>
+				</form>
 			</div>
 		</div>
 	);
