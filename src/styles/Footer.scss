@@ -5,6 +5,16 @@
 	justify-content: space-around;
 	align-items: center;
 
+	.footer-info {
+		h5 {
+			user-select: none;
+			-moz-user-select: none;
+			-khtml-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	}
+
 	.header-sign {
 		h1 {
 			font-size: 90px;

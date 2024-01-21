@@ -2,6 +2,7 @@ import "./Shop.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Home from "./components/Home";
 
 function Shop() {
 	return (
@@ -14,9 +15,8 @@ function Shop() {
 
 					<div className="routes">
 						<Routes>
-							<Route path="/about">{/* <About /> */}</Route>
-							<Route path="/users">{/* <Users /> */}</Route>
-							<Route path="/">{/* <Home /> */}</Route>
+							<Route path="/" element={<Home />} />
+							{/* Dodaj więcej ścieżek w razie potrzeby */}
 						</Routes>
 					</div>
 

@@ -1,15 +1,74 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import "../styles/Header.scss";
-// import { useSelector } from "react-redux";
-// import { RootState } from '../app/store'; // Załóżmy, że plik store.tsx zawiera konfigurację Redux store
+import { ALKOHOL, NAPOJE, WIĘCEJ } from "../utils/enums";
+import {
+	AlkoholInterface,
+	DrinksInterface,
+	MoreInterface,
+} from "../utils/interfaces";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { allDrinks } from "../features/drinks/drinksSlice";
+import SearchIcon from "@mui/icons-material/Search";
+import { IconButton } from "@mui/material";
+
+const ARRAY = [
+	"coca cola",
+	"pepsi ",
+	"sprite ",
+	"frugo ",
+	"żubrówka ",
+	"Stock ",
+	"kinder bueno",
+	"sok pomarańczowy ",
+	"papierosy ",
+	"sprite zero ",
+	"pepsi zero",
+];
 
 const Header: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>("");
+	const [typing, setTyping] = useState<boolean>(false);
+	const [filterData, setFilterData] = useState<string[]>([]);
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setInputValue(event.target.value);
-		console.log("input ‼️", event.target.value);
+	let navigate = useNavigate();
+
+	useEffect(() => {
+		const valueLower = inputValue.toLowerCase();
+		const filteredItems = ARRAY.filter((item) =>
+			item.toLowerCase().includes(valueLower),
+		);
+
+		setFilterData(filteredItems);
+	}, [inputValue]);
+
+	const handleInputChange = (value: string) => {
+		setTyping(true);
+		setInputValue(value.toLowerCase().trim());
+
+		return () => {
+			setTyping(false);
+		};
 	};
+
+	const navigateTo = (item: string) => {
+		navigate(`/${item}`);
+	};
+
+	const findProduct = () => {
+		console.log("filterData", filterData);
+	};
+
+	const ShowEnums = (
+		eachCategory: AlkoholInterface | DrinksInterface | MoreInterface,
+	) =>
+		Object.values(eachCategory).map((category) => {
+			return (
+				<li onClick={() => navigateTo(category)} key={category}>
+					{category}
+				</li>
+			);
+		});
 
 	return (
 		<div className="header">
@@ -19,40 +78,17 @@ const Header: React.FC = () => {
 			<div className="navigation">
 				<ul>
 					<li>
-						NAPOJE ZERO
-						<ul>
-							<li>COLA ZERO</li>
-							<li>SPRITE ZERO</li>
-							<li>FANTA ZERO</li>
-						</ul>
-					</li>
-					<li>
-						ALKO
-						<ul>
-							<li>WODA</li>
-							<li>PIWO</li>
-							<li>SETKA</li>
-						</ul>
-					</li>
-					<li>
-						PRZEKĄSKI
-						<ul>
-							<li>CHIPSY</li>
-							<li>BATONY</li>
-							<li>SŁONE</li>
-						</ul>
-					</li>
-					<li>
 						NAPOJE
-						<ul>
-							<li>COLA</li>
-							<li>SPRITE</li>
-							<li>FANTA</li>
-						</ul>
+						<ul className="drinks">{ShowEnums(NAPOJE)}</ul>
 					</li>
-					{/* {navigationItems.map((item) => (
-            <li key={item.id}>{item.label}</li>
-          ))} */}
+					<li>
+						ALCOHOL
+						<ul className="alcohol">{ShowEnums(ALKOHOL)}</ul>
+					</li>
+					<li>
+						WIĘCEJ
+						<ul className="more">{ShowEnums(WIĘCEJ)}</ul>
+					</li>
 				</ul>
 			</div>
 			<div className="logo">
@@ -62,21 +98,19 @@ const Header: React.FC = () => {
 				/>
 			</div>
 			<div className="search-bar">
-				<form action="">
-					<input
-						type="text"
-						required
-						className="search-bar--input"
-						value={inputValue}
-						onChange={handleInputChange}
-						placeholder="Znajdz produkt"
-					/>
-					<input
-						className="search-bar--submit-input"
-						type="submit"
-						value="Szukaj"
-					/>
-				</form>
+				<input
+					type="text"
+					className="search-bar--input"
+					value={inputValue}
+					onChange={({ target }) => handleInputChange(target.value)}
+					placeholder="Znajdz produkt"
+				/>
+				<IconButton
+					className="search-bar--find-icon"
+					onClick={() => findProduct()}
+					style={{ color: "white", fontSize: "50px" }}>
+					<SearchIcon />
+				</IconButton>
 			</div>
 		</div>
 	);

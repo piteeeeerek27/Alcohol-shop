@@ -5,21 +5,29 @@
 	position: sticky;
 	top: 0;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	padding: 10px;
 
 	.header-sign {
+		margin-left: 5px;
 		transform: skewX(10deg);
 		transform: skewY(-10deg);
+
 		h1 {
-			font-size: 90px;
-			font-weight: 800;
+			font-size: 70px;
+			font-weight: bolder;
 			color: transparent;
 			position: relative;
 			text-transform: uppercase;
 			text-shadow: 0 10px 3px rgba(0, 0, 0, 0.2);
 			-webkit-text-stroke-width: 6px;
 			-webkit-text-stroke-color: red;
+			user-select: none;
+			-moz-user-select: none;
+			-khtml-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
 
 			&::before {
 				content: "";
@@ -27,8 +35,6 @@
 				top: 0;
 				left: 0;
 				color: rgba(42, 44, 45, 0.1);
-				-webkit-text-stroke-width: 6px;
-				-webkit-text-stroke-color: red;
 			}
 
 			&::after {
@@ -37,8 +43,6 @@
 				top: 0;
 				left: 0;
 				color: transparent;
-				-webkit-text-stroke-width: 4px;
-				-webkit-text-stroke-color: rgba(255, 251, 251, 0.8);
 			}
 		}
 	}
@@ -51,94 +55,131 @@
 
 	.search-bar {
 		position: relative;
-		margin-left: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-		form {
-			.search-bar--input {
-				padding: 0.8rem;
-				width: 100%;
-				height: 50px;
+		.search-bar--input {
+			padding: 0.8rem;
+			width: 100%;
+			height: 50px;
+			border: 2px solid rgb(243, 6, 6);
+			background-color: #272530;
+			border-radius: 5px;
+			font-size: 18px;
+			outline: none;
+			color: whitesmoke;
+
+			&::placeholder {
+				font-size: 16px;
+				color: whitesmoke;
+			}
+
+			&:focus {
 				border: 2px solid rgb(243, 6, 6);
-				background-color: #272530;
-				border-radius: 5px;
-				font-size: 18px;
-				outline: none;
-				color: whitesmoke;
-
-				&::placeholder {
-					font-size: 16px;
-					color: whitesmoke;
-				}
-
-				&:focus {
-					border: 2px solid rgb(243, 6, 6);
-				}
 			}
+		}
 
-			input[type="text"] {
-				background-color: green;
-				width: 350px;
-				border: none;
-				outline: none;
-				padding: 0 25px;
-			}
+		input[type="text"] {
+			background-color: green;
+			width: 350px;
+			border: none;
+			border-radius: 20px;
+			padding: 0 25px;
+		}
 
-			select {
-				position: relative;
-				border: none;
-				outline: none;
-				background-color: transparent;
-				border-radius: 5px;
-				color: whitesmoke;
-				font-size: 18px;
-				padding: 13px 20px 15px;
+		select {
+			position: relative;
+			background-color: transparent;
+			border-radius: 5px;
+			color: whitesmoke;
+			font-size: 18px;
+			padding: 13px 20px 15px;
 
-				option {
-					background-color: #000;
-					font-size: 20px;
-					margin: 5px;
-
-					&:hover {
-						cursor: pointer;
-					}
-				}
+			option {
+				background-color: #000;
+				font-size: 20px;
+				margin: 5px;
 
 				&:hover {
 					cursor: pointer;
 				}
-
-				&:focus {
-					background-color: green;
-				}
 			}
 
-			input[type="submit"] {
-				position: relative;
-				width: 100px;
-				border: none;
-				outline: none;
+			&:hover {
 				cursor: pointer;
-				background-color: transparent;
-				color: whitesmoke;
 			}
 
-			.search-bar--submit-input {
-				font-size: 16px;
-				height: 50px;
-				border-radius: 5px;
+			&:focus {
+				background-color: green;
+			}
+		}
 
-				&:focus {
-					background-color: red;
-				}
+		input[type="submit"] {
+			position: relative;
+			width: 100px;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			background-color: transparent;
+			color: whitesmoke;
+		}
+
+		.search-bar--find-icon {
+			width: 100px;
+			background-color: transparent;
+			color: whitesmoke;
+			border-color: whitesmoke;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 20px;
+
+			&:hover {
+				cursor: pointer;
 			}
 		}
 	}
 
 	.navigation {
-		margin-left: 20px;
 		display: flex;
 		flex-direction: column;
-		font-family: "Lemon", serif;
+		justify-content: space-between;
+
+		.drinks {
+			background-color: rgba(1, 29, 65, 0.23);
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
+
+		.alcohol {
+			background-color: rgba(1, 29, 65, 0.23);
+			color: whtiesmoke;
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
+
+		.more {
+			background-color: rgba(1, 29, 65, 0.23);
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
 
 		ul {
 			list-style: none;
@@ -150,13 +191,14 @@
 				font-size: 0.8rem;
 				letter-spacing: 0.15rem;
 				margin: 0 1rem;
+				padding: 0 20px;
 
 				&:hover {
 					cursor: pointer;
 
 					ul {
 						opacity: 1;
-						pointer-events: auto;
+						// pointer-events: auto;
 					}
 				}
 
@@ -164,10 +206,9 @@
 					display: none;
 					position: absolute;
 					background-color: #000000;
-					box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 					z-index: 1;
 					padding: 8px;
-					pointer-events: none;
+					// pointer-events: none;
 
 					li {
 						display: block;

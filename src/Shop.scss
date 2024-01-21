@@ -6,7 +6,13 @@
 	.routes {
 		flex: 2;
 	}
+
 	footer {
 		text-align: center;
+	}
+
+	nav {
+		position: sticky;
+		top: 0;
 	}
 }
