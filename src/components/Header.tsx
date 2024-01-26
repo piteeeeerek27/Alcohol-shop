@@ -7,10 +7,9 @@ import {
 	MoreInterface,
 } from "../utils/interfaces";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { allDrinks } from "../features/drinks/drinksSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
 
 const ARRAY = [
 	"coca cola",
@@ -72,7 +71,7 @@ const Header: React.FC = () => {
 
 	return (
 		<div className="header">
-			<div className="header-sign">
+			<div onClick={() => navigate(`/`)} className="header-sign">
 				<h1>24/7</h1>
 			</div>
 			<div className="navigation">

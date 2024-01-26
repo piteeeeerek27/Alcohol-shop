@@ -1,6 +1,6 @@
 .HomeProduct {
 	box-sizing: border-box;
-	background-color: #000000;
+	background-color: darkgreen;
 	border-radius: 15px 15px 0 0;
 	overflow: hidden;
 	display: flex;
@@ -26,9 +26,26 @@
 		align-items: center;
 		padding: 0 15px;
 
-		select {
-			margin-left: 20px;
-			padding: 0 10px;
+		.select-quantity-label {
+			color: whitesmoke;
+			margin-bottom: 5px;
+			font-size: 12px;
+		}
+
+		.select-capacity-label {
+			color: whitesmoke;
+			margin-bottom: 5px;
+			font-size: 12px;
+		}
+
+		.select-capacity {
+			color: whitesmoke;
+			width: 100px;
+		}
+
+		.select-quantity {
+			color: whitesmoke;
+			width: 90px;
 		}
 
 		span {
