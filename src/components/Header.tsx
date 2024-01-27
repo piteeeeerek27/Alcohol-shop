@@ -9,21 +9,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-
-const ARRAY = [
-	"coca cola",
-	"pepsi ",
-	"sprite ",
-	"frugo ",
-	"żubrówka ",
-	"Stock ",
-	"kinder bueno",
-	"sok pomarańczowy ",
-	"papierosy ",
-	"sprite zero ",
-	"pepsi zero",
-];
+import { useDispatch, useSelector } from "react-redux";
+import { ShopState } from "../app/store/store";
+import { updateCategoryRoute } from "../features/drinks/drinksSlice";
 
 const Header: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>("");
@@ -31,12 +19,16 @@ const Header: React.FC = () => {
 	const [filterData, setFilterData] = useState<string[]>([]);
 
 	let navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { drinks } = useSelector((state: ShopState) => state.drinks);
+	const { drinksContainer } = useSelector((state: ShopState) => state.drinks);
 
 	useEffect(() => {
 		const valueLower = inputValue.toLowerCase();
-		const filteredItems = ARRAY.filter((item) =>
+		const filteredItems = drinks.filter((item) =>
 			item.toLowerCase().includes(valueLower),
 		);
+		// console.log("selectCategoryRoute", selectCategoryRoute);
 
 		setFilterData(filteredItems);
 	}, [inputValue]);
@@ -51,11 +43,23 @@ const Header: React.FC = () => {
 	};
 
 	const navigateTo = (item: string) => {
-		navigate(`/${item}`);
+		// navigacja LI
+		console.log("item", item);
+
+		navigate(`${drinks}/${item}`);
 	};
 
 	const findProduct = () => {
 		console.log("filterData", filterData);
+	};
+
+	const categoryProducts = (value: string) => {
+		// navigacja z UL
+		console.log("value", value);
+		navigate(`products/${value}`);
+		dispatch(updateCategoryRoute(value));
+
+		//  // TERAZ POBIERASZ VALUE UPDATOWANE po KLILNIECIU NA NAVIGACJE i przechodzisz do strony z załądowanymi itemami pod dana kategorie
 	};
 
 	const ShowEnums = (
@@ -75,16 +79,22 @@ const Header: React.FC = () => {
 				<h1>24/7</h1>
 			</div>
 			<div className="navigation">
-				<ul>
-					<li>
+				<ul className="navigation-list">
+					<li
+						onClick={() => categoryProducts("NAPOJE")}
+						className="navigation-list-left-drinks">
 						NAPOJE
 						<ul className="drinks">{ShowEnums(NAPOJE)}</ul>
 					</li>
-					<li>
+					<li
+						onClick={() => categoryProducts("ALCOHOL")}
+						className="navigation-list-middle-drinks">
 						ALCOHOL
 						<ul className="alcohol">{ShowEnums(ALKOHOL)}</ul>
 					</li>
-					<li>
+					<li
+						onClick={() => categoryProducts("WIĘCEJ")}
+						className="navigation-list-right-drinks">
 						WIĘCEJ
 						<ul className="more">{ShowEnums(WIĘCEJ)}</ul>
 					</li>
@@ -106,8 +116,7 @@ const Header: React.FC = () => {
 				/>
 				<IconButton
 					className="search-bar--find-icon"
-					onClick={() => findProduct()}
-					style={{ color: "white", fontSize: "50px" }}>
+					onClick={() => findProduct()}>
 					<SearchIcon />
 				</IconButton>
 			</div>

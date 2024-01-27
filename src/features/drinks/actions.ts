@@ -1,12 +1,11 @@
 import { Action } from "@reduxjs/toolkit";
-
-export const DRINKS_ARRAY = "DRINKS_ARRAY";
-
 export interface DRINKS_ACTION extends Action<typeof DRINKS_ARRAY> {
 	payload: string[];
 }
 
-export const DRINKS = (array: string[]): DRINKS_ACTION => ({
+export const DRINKS_ARRAY = "DRINKS_ARRAY";
+
+export const DRINKS = (drinks: string[]) => ({
 	type: DRINKS_ARRAY,
-	payload: array,
+	payload: drinks,
 });

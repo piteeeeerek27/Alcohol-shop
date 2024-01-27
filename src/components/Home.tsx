@@ -21,25 +21,28 @@ const Home = () => {
 				<OutlinedInput
 					style={{
 						borderRadius: "20px",
+						border: "1px solid whitesmoke",
 						width: "80%",
+						color: "whitesmoke",
 					}}
 					endAdornment={
 						<InputAdornment position="end">
 							<IconButton>
-								<SearchIcon />
+								<SearchIcon style={{ color: "whitesmoke" }} />
 							</IconButton>
 						</InputAdornment>
 					}
-					placeholder="Wyszukaj..."
+					placeholder="Wyszukaj produkt ..."
 					value={productValue}
 					onChange={onProductChange}
 				/>
-				<IconButton style={{ marginTop: "10px" }}>
+				<IconButton style={{ marginTop: "10px", color: "whitesmoke" }}>
 					<NearMeIcon
 						sx={{
 							fontSize: 60,
 							padding: "10px",
 							cursor: "pointer",
+							color: "whitesmoke",
 							"&:hover": {
 								transform: "scale(1.5)",
 								transition: "transform 0.2s ease",

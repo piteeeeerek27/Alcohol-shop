@@ -1,3 +1,5 @@
+@import "variables";
+
 .footer {
 	padding: 20px;
 	display: flex;
@@ -23,7 +25,7 @@
 			text-transform: uppercase;
 			text-shadow: 0 10px 3px rgba(0, 0, 0, 0.2);
 			-webkit-text-stroke-width: 6px;
-			-webkit-text-stroke-color: red;
+			-webkit-text-stroke-color: $light-red;
 
 			&::before {
 				content: "";
@@ -32,7 +34,7 @@
 				left: 0;
 				color: rgba(42, 44, 45, 0.1);
 				-webkit-text-stroke-width: 6px;
-				-webkit-text-stroke-color: red;
+				-webkit-text-stroke-color: $light-red;
 			}
 
 			&::after {
@@ -42,7 +44,7 @@
 				left: 0;
 				color: transparent;
 				-webkit-text-stroke-width: 4px;
-				-webkit-text-stroke-color: rgba(255, 251, 251, 0.8);
+				-webkit-text-stroke-color: $whitesmoke-text;
 			}
 		}
 	}
@@ -60,25 +62,25 @@
 		}
 
 		.email-icon {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			&:hover {
 				color: red;
 			}
 		}
 		.phone-icon {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			&:hover {
 				color: greenyellow;
 			}
 		}
 		.ig-icon {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			&:hover {
 				color: purple;
 			}
 		}
 		.fb-icon {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			&:hover {
 				color: blue;
 			}

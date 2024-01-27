@@ -4,8 +4,20 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Home from "./components/Home";
+import { useSelector } from "react-redux";
+import { ShopState } from "./app/store/store";
+import { useEffect, useState } from "react";
 
 function Shop() {
+	const [category, setCategory] = useState("");
+	const [items, setItems] = useState([]);
+
+	const { drinksContainer } = useSelector((state: ShopState) => state.drinks);
+	useEffect(() => {
+		console.log("fasfaasfasf", drinksContainer);
+		// setCategory(drinksContainer)
+	}, []);
+
 	return (
 		<>
 			<Router>
@@ -17,8 +29,13 @@ function Shop() {
 					<div className="routes">
 						<Routes>
 							<Route path="/" element={<Home />} index />
-							<Route path="/about" element={<Products />} />
-							{/* <Route path="/contact" element={<Contact />} /> */}
+							{drinksContainer.map(({ category, items }) => (
+								<Route
+									key={category}
+									path={`/products/${category}`}
+									element={<Products />}
+								/>
+							))}
 						</Routes>
 					</div>
 

@@ -1,3 +1,5 @@
+@import "variables";
+
 .eachProduct {
 	box-sizing: border-box;
 	border-radius: 15px 15px 0 0;
@@ -6,9 +8,9 @@
 	flex-direction: column;
 	justify-content: center;
 	gap: 20px;
-	-webkit-box-shadow: 0px 8px 56px 0px rgba(255, 255, 255, 1);
-	-moz-box-shadow: 0px 8px 56px 0px rgba(255, 255, 255, 1);
-	box-shadow: 0px 8px 56px 0px rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 0px 8px 56px 0px $box-shadow-product;
+	-moz-box-shadow: 0px 8px 56px 0px $box-shadow-product;
+	box-shadow: 0px 8px 56px 0px $box-shadow-product;
 
 	img {
 		width: 100%;
@@ -16,7 +18,7 @@
 	}
 
 	.name {
-		color: whitesmoke;
+		color: $whitesmoke-text;
 		padding: 0 15px;
 	}
 
@@ -26,24 +28,24 @@
 		padding: 0 15px;
 
 		.select-quantity-label {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			margin-bottom: 5px;
 			font-size: 12px;
 		}
 
 		.select-capacity-label {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			margin-bottom: 5px;
 			font-size: 12px;
 		}
 
 		.select-capacity {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			width: 100px;
 		}
 
 		.select-quantity {
-			color: whitesmoke;
+			color: $whitesmoke-text;
 			width: 90px;
 		}
 

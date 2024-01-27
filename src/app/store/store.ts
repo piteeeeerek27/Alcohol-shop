@@ -6,3 +6,8 @@ export const store = configureStore({
 		drinks: drinksReducer,
 	},
 });
+
+export type ShopState = ReturnType<typeof store.getState>;
+export type ShopDispatch = typeof store.dispatch;
+
+export default store;

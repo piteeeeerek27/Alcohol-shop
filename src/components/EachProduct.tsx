@@ -10,7 +10,7 @@ import "../styles/EachProduct.scss";
 import { useState } from "react";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 
-const EachProduct = () => {
+const EachProduct = (data: { name: string }) => {
 	const [quantity, setQuantity] = useState<string>("");
 	const [capacity, setCapacity] = useState<string>("");
 
@@ -42,7 +42,7 @@ const EachProduct = () => {
 				src="https://p1.hiclipart.com/preview/19/404/887/pizza-fizzy-drinks-pepsi-pepsi-wild-cherry-pizza-inn-food-pepsi-bottle-drink-can-png-clipart.jpg"
 				alt=""
 			/>
-			<span className="name">Pepsi</span>
+			<span className="name">{data?.name}</span>
 			<div className="product-select-price">
 				<span>4.50 zł</span>
 				<FormControl sx={{ marginLeft: "10px" }} size="small">
