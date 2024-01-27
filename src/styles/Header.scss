@@ -5,23 +5,23 @@
 	position: sticky;
 	top: 0;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	padding: 10px;
 
 	.header-sign {
-		margin-left: 5px;
-		transform: skewX(10deg);
-		transform: skewY(-10deg);
+		transform: skewX(20deg);
+		transform: skewY(-20deg);
+		position: absolute;
+		top: 15%;
+		left: 1%;
 
 		h1 {
-			font-size: 70px;
-			font-weight: bolder;
+			font-size: 50px;
+			font-weight: bold;
 			color: transparent;
-			position: relative;
 			text-transform: uppercase;
 			text-shadow: 0 10px 3px rgba(0, 0, 0, 0.2);
-			-webkit-text-stroke-width: 6px;
+			-webkit-text-stroke-width: 4px;
 			-webkit-text-stroke-color: red;
 			cursor: pointer;
 			// user-select: none;
@@ -48,7 +48,100 @@
 		}
 	}
 
+	.navigation {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		flex: 0.4;
+
+		.drinks {
+			background-color: rgba(65, 1, 1, 0.77);
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
+
+		.alcohol {
+			background-color: rgba(1, 29, 65, 0.23);
+			color: whtiesmoke;
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
+
+		.more {
+			background-color: rgba(1, 29, 65, 0.23);
+
+			li {
+				color: red;
+				&:hover {
+					color: rgb(228, 202, 9);
+				}
+			}
+		}
+
+		ul {
+			list-style: none;
+			padding: 0px;
+			margin: 0;
+
+			li {
+				display: inline-block;
+				font-size: 0.8rem;
+				letter-spacing: 0.15rem;
+				margin: 0 1rem;
+				padding: 0 20px;
+
+				&:hover {
+					cursor: pointer;
+
+					ul {
+						opacity: 1;
+						// pointer-events: auto;
+					}
+				}
+
+				ul {
+					display: none;
+					position: absolute;
+					background-color: #000000;
+					z-index: 1;
+					padding: 8px;
+					// pointer-events: none;
+
+					li {
+						display: block;
+						margin: 0;
+						padding: 10px;
+
+						&:hover {
+							color: rgb(110, 233, 9);
+							font-weight: bold;
+						}
+					}
+				}
+
+				&:hover ul {
+					display: block;
+				}
+			}
+		}
+	}
+
 	.logo {
+		flex: 0.2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		img {
 			height: 100px;
 		}
@@ -59,6 +152,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex: 0.4;
 
 		.search-bar--input {
 			padding: 0.8rem;
@@ -139,93 +233,6 @@
 
 			&:hover {
 				cursor: pointer;
-			}
-		}
-	}
-
-	.navigation {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-
-		.drinks {
-			background-color: rgba(1, 29, 65, 0.23);
-
-			li {
-				color: red;
-				&:hover {
-					color: rgb(228, 202, 9);
-				}
-			}
-		}
-
-		.alcohol {
-			background-color: rgba(1, 29, 65, 0.23);
-			color: whtiesmoke;
-
-			li {
-				color: red;
-				&:hover {
-					color: rgb(228, 202, 9);
-				}
-			}
-		}
-
-		.more {
-			background-color: rgba(1, 29, 65, 0.23);
-
-			li {
-				color: red;
-				&:hover {
-					color: rgb(228, 202, 9);
-				}
-			}
-		}
-
-		ul {
-			list-style: none;
-			padding: 0px;
-			margin: 0;
-
-			li {
-				display: inline-block;
-				font-size: 0.8rem;
-				letter-spacing: 0.15rem;
-				margin: 0 1rem;
-				padding: 0 20px;
-
-				&:hover {
-					cursor: pointer;
-
-					ul {
-						opacity: 1;
-						// pointer-events: auto;
-					}
-				}
-
-				ul {
-					display: none;
-					position: absolute;
-					background-color: #000000;
-					z-index: 1;
-					padding: 8px;
-					// pointer-events: none;
-
-					li {
-						display: block;
-						margin: 0;
-						padding: 10px;
-
-						&:hover {
-							color: rgb(110, 233, 9);
-							font-weight: bold;
-						}
-					}
-				}
-
-				&:hover ul {
-					display: block;
-				}
 			}
 		}
 	}
