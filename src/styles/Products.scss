@@ -1,0 +1,17 @@
+$beer-height: 320px;
+$foam-height: 50px;
+$glass-width: 270px;
+
+.Products {
+	height: 100%;
+
+	.product-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		gap: 30px;
+		width: 70%;
+		margin: 1em auto;
+	}
+}

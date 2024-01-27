@@ -1,47 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { allDrinks } from "../features/drinks/drinksSlice";
+import React, { ChangeEvent as ReactChangeEvent, useState } from "react";
 import "../styles/Home.scss";
-import HomeProduct from "./HomeProduct";
-import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+
+import { allBrands } from "../utils/helpers";
+import NearMeIcon from "@mui/icons-material/NearMe";
+import { InputAdornment, OutlinedInput } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Home = () => {
-	const dispatch = useDispatch();
-	const basket = [];
-	// const listOfDrinks = useSelector(
-	// 	(state: { drinks: string[] }) => state.drinks,
-	// );
-	// const handleAddDrink = (newDrink: string) => {
-	// };
-	useEffect(() => {
-		dispatch(allDrinks());
-	}, [dispatch]);
+	const [productValue, setProductValue] = useState<string>("");
+	const [brands, setBrands] = useState(allBrands);
+
+	const onProductChange = (event: any) => {
+		console.log("event", event);
+	};
 
 	return (
 		<div className="Home">
-			<div className="product-container">
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
-				<HomeProduct />
+			<div className="home-top-section">
+				<OutlinedInput
+					style={{
+						borderRadius: "20px",
+						width: "80%",
+					}}
+					endAdornment={
+						<InputAdornment position="end">
+							<IconButton>
+								<SearchIcon />
+							</IconButton>
+						</InputAdornment>
+					}
+					placeholder="Wyszukaj..."
+					value={productValue}
+					onChange={onProductChange}
+				/>
+				<IconButton style={{ marginTop: "10px" }}>
+					<NearMeIcon
+						sx={{
+							fontSize: 60,
+							padding: "10px",
+							cursor: "pointer",
+							"&:hover": {
+								transform: "scale(1.5)",
+								transition: "transform 0.2s ease",
+							},
+						}}
+					/>
+				</IconButton>
 			</div>
-			<div className="basket-container">
-				{basket.length > 0 && (
-					<IconButton style={{ color: "white" }}>
-						<ShoppingCartTwoToneIcon
-							style={{
-								fontSize: "50px",
-							}}
-						/>
-					</IconButton>
-				)}
-			</div>
+
+			<div className="Home-bottom-section"></div>
 		</div>
 	);
 };

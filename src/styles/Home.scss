@@ -1,17 +1,20 @@
-$beer-height: 320px;
-$foam-height: 50px;
-$glass-width: 270px;
-
 .Home {
+	background: darkcyan;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
 
-	.product-container {
+	.home-top-section {
+		background-color: rgb(0, 76, 29);
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-around;
+		justify-content: center;
 		align-items: center;
-		gap: 30px;
-		width: 70%;
-		margin: 1em auto;
+		flex: 0.5;
+		flex-direction: column;
+	}
+
+	.home-bottom-section {
+		flex: 0.5;
+		background-color: rgb(41, 41, 23);
 	}
 }

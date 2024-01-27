@@ -1,20 +1,18 @@
 import {
+	Button,
 	FormControl,
 	InputLabel,
 	MenuItem,
 	Select,
 	SelectChangeEvent,
 } from "@mui/material";
-import "../styles/HomeProduct.scss";
+import "../styles/EachProduct.scss";
 import { useState } from "react";
+import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 
-const HomeProduct = () => {
+const EachProduct = () => {
 	const [quantity, setQuantity] = useState<string>("");
 	const [capacity, setCapacity] = useState<string>("");
-	const [productData, setProductData] = useState({
-		q: "",
-		c: "",
-	});
 
 	const handleChange =
 		(fieldName: "quantity" | "capacity") => (event: SelectChangeEvent) => {
@@ -23,17 +21,9 @@ const HomeProduct = () => {
 			switch (fieldName) {
 				case "quantity":
 					setQuantity(value);
-					setProductData({
-						q: value,
-						c: "",
-					});
 					break;
 				case "capacity":
 					setCapacity(value);
-					setProductData({
-						q: "",
-						c: value,
-					});
 					break;
 
 				default:
@@ -47,7 +37,7 @@ const HomeProduct = () => {
 	};
 
 	return (
-		<div className="HomeProduct">
+		<div className="eachProduct">
 			<img
 				src="https://p1.hiclipart.com/preview/19/404/887/pizza-fizzy-drinks-pepsi-pepsi-wild-cherry-pizza-inn-food-pepsi-bottle-drink-can-png-clipart.jpg"
 				alt=""
@@ -55,6 +45,20 @@ const HomeProduct = () => {
 			<span className="name">Pepsi</span>
 			<div className="product-select-price">
 				<span>4.50 zł</span>
+				<FormControl sx={{ marginLeft: "10px" }} size="small">
+					<InputLabel className="select-capacity-label">Rozmiar</InputLabel>
+					<Select
+						labelId="select-capacity-label"
+						className="select-capacity"
+						value={capacity}
+						label="capacity"
+						onChange={handleChange("capacity")}>
+						<MenuItem value={"small"}>200ml</MenuItem>
+						<MenuItem value={"large"}>litr</MenuItem>
+						<MenuItem value={"biG"}>2litry</MenuItem>
+					</Select>
+				</FormControl>
+
 				<FormControl sx={{ marginLeft: "10px" }} size="small">
 					<InputLabel className="select-quantity-label">Ilość</InputLabel>
 					<Select
@@ -75,24 +79,17 @@ const HomeProduct = () => {
 						<MenuItem value={10}>10</MenuItem>
 					</Select>
 				</FormControl>
-
-				<FormControl sx={{ marginLeft: "10px" }} size="small">
-					<InputLabel className="select-capacity-label">Rozmiar</InputLabel>
-					<Select
-						labelId="select-capacity-label"
-						className="select-capacity"
-						value={capacity}
-						label="capacity"
-						onChange={handleChange("capacity")}>
-						<MenuItem value={"small"}>200ml</MenuItem>
-						<MenuItem value={"large"}>litr</MenuItem>
-						<MenuItem value={"biG"}>2litry</MenuItem>
-					</Select>
-				</FormControl>
 			</div>
-			<button onClick={addProduct}>add to cart</button>
+			<Button
+				style={{ textTransform: "lowercase" }}
+				onClick={addProduct}
+				variant="text"
+				size="small"
+				endIcon={<LocalGroceryStoreIcon />}>
+				add to cart
+			</Button>
 		</div>
 	);
 };
 
-export default HomeProduct;
+export default EachProduct;
