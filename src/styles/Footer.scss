@@ -7,6 +7,7 @@
 	align-items: center;
 
 	.footer-info {
+		flex: 0.7;
 		h5 {
 			user-select: none;
 			-moz-user-select: none;
@@ -51,7 +52,7 @@
 
 	.footer-links {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 
 		.email-icon,
 		.phone-icon,
@@ -62,27 +63,44 @@
 		}
 
 		.email-icon {
-			color: $whitesmoke-text;
-			&:hover {
-				color: red;
+			.MuiSvgIcon-root {
+				font-size: 2.5em;
+				color: #bd6f68;
+
+				&:hover {
+					color: #ffd85a;
+				}
 			}
 		}
+
 		.phone-icon {
-			color: $whitesmoke-text;
-			&:hover {
-				color: greenyellow;
+			.MuiSvgIcon-root {
+				font-size: 2.5em;
+				color: #4caf50;
+
+				&:hover {
+					color: #2e7d32;
+				}
 			}
 		}
 		.ig-icon {
-			color: $whitesmoke-text;
-			&:hover {
-				color: purple;
+			.MuiSvgIcon-root {
+				font-size: 2.5em;
+				color: #c13584;
+
+				&:hover {
+					color: #b547d0;
+				}
 			}
 		}
 		.fb-icon {
-			color: $whitesmoke-text;
-			&:hover {
-				color: blue;
+			.MuiSvgIcon-root {
+				font-size: 2.5em;
+				color: #1468f1;
+
+				&:hover {
+					color: #0b63d5;
+				}
 			}
 		}
 	}
