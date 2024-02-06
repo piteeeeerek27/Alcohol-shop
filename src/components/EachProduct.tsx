@@ -7,12 +7,18 @@ import {
 	SelectChangeEvent,
 } from "@mui/material";
 import "../styles/EachProduct.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import { useDispatch } from "react-redux";
 
 const EachProduct = (data: { name: string }) => {
 	const [quantity, setQuantity] = useState<string>("");
 	const [capacity, setCapacity] = useState<string>("");
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		console.log("data", data);
+	}, []);
 
 	const handleChange =
 		(fieldName: "quantity" | "capacity") => (event: SelectChangeEvent) => {

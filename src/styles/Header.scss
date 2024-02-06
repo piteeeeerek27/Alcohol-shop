@@ -140,29 +140,89 @@
 		justify-content: center;
 		flex: 0.45;
 
-		.search-bar--input {
-			padding: 0.8em;
-			width: 100%;
-			height: 50px;
-			border: transparent;
-			background-color: #2c2c2f;
-			border-radius: 5px;
-			font-size: 18px;
-			outline: none;
-			color: $whitesmoke-text;
-
-			&::placeholder {
-				font-size: 16px;
+		.input-text {
+			.search-bar--input {
+				height: 50px;
+				border: transparent;
+				background-color: #2c2c2f;
+				font-size: 18px;
+				outline: none;
 				color: $whitesmoke-text;
+
+				&::placeholder {
+					font-size: 16px;
+					color: $whitesmoke-text;
+				}
+
+				&:focus {
+					border: none;
+				}
 			}
 
-			&:focus {
-				border: none;
+			.search-bar--dropdown-show {
+				display: block;
+				position: absolute;
+				font-size: 0.9em;
+				border-radius: 10px;
+				-webkit-box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				-moz-box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				background-color: #000;
+				padding: 8px;
+
+				.row {
+					font-size: 1.2em;
+					padding: 10px;
+					border-radius: 5px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					img {
+						height: 60px;
+						border-radius: 5px;
+					}
+
+					&:hover {
+						background-color: rgb(93, 4, 4);
+						cursor: pointer;
+					}
+				}
+			}
+
+			.search-bar--dropdown {
+				display: none;
+				position: absolute;
+				font-size: 0.9em;
+				border-radius: 10px;
+				-webkit-box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				-moz-box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				box-shadow: 0px 20px 83px -8px $box-shadow-nav;
+				background-color: #000;
+				padding: 8px;
+
+				.row {
+					font-size: 1.2em;
+					padding: 10px;
+					border-radius: 5px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					img {
+						height: 60px;
+						border-radius: 5px;
+					}
+
+					&:hover {
+						background-color: rgb(93, 4, 4);
+						cursor: pointer;
+					}
+				}
 			}
 		}
 
 		input[type="text"] {
-			width: 400px;
 			border: none;
 			border-radius: 20px;
 			padding: 0 25px;

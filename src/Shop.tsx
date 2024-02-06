@@ -9,13 +9,9 @@ import { ShopState } from "./app/store/store";
 import { useEffect, useState } from "react";
 
 function Shop() {
-	const [category, setCategory] = useState("");
-	const [items, setItems] = useState([]);
-
 	const { drinksContainer } = useSelector((state: ShopState) => state.drinks);
 	useEffect(() => {
 		console.log("fasfaasfasf", drinksContainer);
-		// setCategory(drinksContainer)
 	}, []);
 
 	return (
@@ -29,13 +25,10 @@ function Shop() {
 					<div className="routes">
 						<Routes>
 							<Route path="/" element={<Home />} index />
-							{drinksContainer.map(({ category, items }) => (
-								<Route
-									key={category}
-									path={`/products/${category}`}
-									element={<Products />}
-								/>
-							))}
+							<Route path={`/products/${"NAPOJE"}`} element={<Products />} />
+							<Route path={`/products/${"ALCOHOL"}`} element={<Products />} />
+							<Route path={`/products/${"WIECEJ"}`} element={<Products />} />
+							{/* <Route component={NotFound} /> */}
 						</Routes>
 					</div>
 

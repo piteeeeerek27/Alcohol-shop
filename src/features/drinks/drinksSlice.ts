@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface DrinksState {
+export interface DrinksState {
 	drinks: string[];
 	drinksContainer: DrinksContainerItem[];
 	categoryRoute: string;
@@ -42,7 +42,7 @@ export const initialState: DrinksState = {
 			],
 		},
 		{
-			category: "ALKOHOL",
+			category: "ALCOHOL",
 			items: [
 				"stock",
 				"alkohol2",
@@ -57,6 +57,22 @@ export const initialState: DrinksState = {
 		{
 			category: "WIECEJ",
 			items: [
+				"coca cola",
+				"pepsi",
+				"frugo",
+				"fanta",
+				"sprite",
+				"MONTEN DJU",
+				"sok",
+				"tymbark",
+				"stock",
+				"alkohol2",
+				"alkohol3",
+				"alkohol4",
+				"alkohol5",
+				"alkohol6",
+				"alkohol7",
+				"STUMBRAS",
 				"element1",
 				"element2",
 				"element3",
@@ -90,26 +106,24 @@ const drinksSlice = createSlice({
 			return state;
 		},
 
-		updateCategoryRoute: (
-			state: DrinksState,
-			action: PayloadAction<string>,
-		) => {
-			state.categoryRoute = action.payload;
-		},
-
 		// replaceDrinks: (state: DrinksState, action: PayloadAction<string[]>) => {
 		// 	// Zastąp cały array nowymi napojami
 		// 	state.drinks = action.payload;
 		// 	// dispatch(allDrinks(["nowy napój 1", "nowy napój 2"])); tak uzyć
 		// },
+		categoryNav: (state: DrinksState, action: PayloadAction<string>) => {
+			// Zastąp cały array nowymi napojami
+			state.categoryRoute = action.payload;
+			// dispatch(allDrinks("nowy napój 2")); tak uzyć
+		},
 
-		// resetState: (state: DrinksState) => {
-		// 	state.drinks = [];
-		// },
+		resetState: (state: DrinksState) => {
+			state.categoryRoute = "";
+		},
 	},
 });
 
-export const { allDrinks, updateCategoryRoute } = drinksSlice.actions;
+export const { allDrinks, categoryNav, resetState } = drinksSlice.actions;
 
 // Reducer
 export default drinksSlice.reducer;
@@ -125,10 +139,22 @@ export const NAPOJE_SELECTOR = (state: { drinks: DrinksState }) => {
 
 	return napojeCategory ? napojeCategory.items : [];
 };
-export const ALKOHOLE_SELECTOR = (state: { drinks: DrinksState }) => {
+
+export const AlCOHOL_SELECTOR = (state: { drinks: DrinksState }) => {
 	const napojeCategory = state.drinks.drinksContainer.find(
-		(item) => item.category === "ALKOHOLE",
+		(item) => item.category === "ALCOHOL",
 	);
 
 	return napojeCategory ? napojeCategory.items : [];
 };
+
+export const WIECEJ_SELECTOR = (state: { drinks: DrinksState }) => {
+	const napojeCategory = state.drinks.drinksContainer.find(
+		(item) => item.category === "WIECEJ",
+	);
+
+	return napojeCategory ? napojeCategory.items : [];
+};
+
+export const selectCategoryRoute = (state: { drinks: DrinksState }) =>
+	state.drinks.categoryRoute;

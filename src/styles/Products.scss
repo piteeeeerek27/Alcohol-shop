@@ -2,6 +2,7 @@
 
 .Products {
 	height: 100%;
+	position: relative;
 
 	.product-container {
 		display: flex;
@@ -11,5 +12,20 @@
 		gap: 30px;
 		width: 70%;
 		margin: 1em auto;
+	}
+
+	.basket-container {
+		position: sticky;
+		bottom: 5%;
+		margin-left: 2em;
+
+		& .basket-container--shopping-icon {
+			font-size: 40px;
+			transition: transform 0.3s ease-in-out;
+
+			&:hover {
+				transform: scale(1.2);
+			}
+		}
 	}
 }

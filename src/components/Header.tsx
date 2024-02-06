@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Header.scss";
 import { ALKOHOL, NAPOJE, WIĘCEJ } from "../utils/enums";
 import {
@@ -11,35 +11,40 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { ShopState } from "../app/store/store";
-import { updateCategoryRoute } from "../features/drinks/drinksSlice";
+import { categoryNav } from "../features/drinks/drinksSlice";
 
 const Header: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>("");
 	const [typing, setTyping] = useState<boolean>(false);
-	const [filterData, setFilterData] = useState<string[]>([]);
+	const [searchedInputValue, setSearchedInputValue] = useState<string[]>([]);
 
 	let navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { drinks } = useSelector((state: ShopState) => state.drinks);
-	const { drinksContainer } = useSelector((state: ShopState) => state.drinks);
 
 	useEffect(() => {
-		const valueLower = inputValue.toLowerCase();
-		const filteredItems = drinks.filter((item) =>
-			item.toLowerCase().includes(valueLower),
-		);
-		// console.log("selectCategoryRoute", selectCategoryRoute);
-
-		setFilterData(filteredItems);
-	}, [inputValue]);
+		console.log("searchedInputValue ‼️", searchedInputValue);
+	}, [searchedInputValue, drinks]);
 
 	const handleInputChange = (value: string) => {
-		setTyping(true);
-		setInputValue(value.toLowerCase().trim());
+		const filteredItems = drinks.filter((item) =>
+			item.toLowerCase().startsWith(value),
+		);
+		setSearchedInputValue(filteredItems);
 
-		return () => {
-			setTyping(false);
-		};
+		switch (value.length <= 0) {
+			case true:
+				setTyping(false);
+				break;
+			case false:
+				setTyping(true);
+				break;
+			default:
+				setTyping(false);
+				break;
+		}
+		console.log("value", value.length);
+		setInputValue(value.toLowerCase());
 	};
 
 	const navigateTo = (item: string) => {
@@ -50,16 +55,12 @@ const Header: React.FC = () => {
 	};
 
 	const findProduct = () => {
-		console.log("filterData", filterData);
+		console.log("searchedInputValue", searchedInputValue);
 	};
 
 	const categoryProducts = (value: string) => {
-		// navigacja z UL
-		console.log("value", value);
+		dispatch(categoryNav(value));
 		navigate(`products/${value}`);
-		dispatch(updateCategoryRoute(value));
-
-		//  // TERAZ POBIERASZ VALUE UPDATOWANE po KLILNIECIU NA NAVIGACJE i przechodzisz do strony z załądowanymi itemami pod dana kategorie
 	};
 
 	const ShowEnums = (
@@ -93,7 +94,7 @@ const Header: React.FC = () => {
 						<ul className="alcohol">{ShowEnums(ALKOHOL)}</ul>
 					</li>
 					<li
-						onClick={() => categoryProducts("WIĘCEJ")}
+						onClick={() => categoryProducts("WIECEJ")}
 						className="navigation-list-right-drinks">
 						WIĘCEJ
 						<ul className="more">{ShowEnums(WIĘCEJ)}</ul>
@@ -107,13 +108,29 @@ const Header: React.FC = () => {
 				/>
 			</div>
 			<div className="search-bar">
-				<input
-					type="text"
-					className="search-bar--input"
-					value={inputValue}
-					onChange={({ target }) => handleInputChange(target.value)}
-					placeholder="Znajdz produkt"
-				/>
+				<div className="input-text">
+					<input
+						type="text"
+						className="search-bar--input"
+						value={inputValue}
+						onChange={({ target }) => handleInputChange(target.value)}
+						placeholder="Znajdz produkt"
+					/>
+					<div
+						className={`${
+							typing ? "search-bar--dropdown-show" : "search-bar--dropdown"
+						} `}>
+						{searchedInputValue.map((suggestedItem) => (
+							<div className="row" key={suggestedItem}>
+								<img
+									src="https://p1.hiclipart.com/preview/19/404/887/pizza-fizzy-drinks-pepsi-pepsi-wild-cherry-pizza-inn-food-pepsi-bottle-drink-can-png-clipart.jpg"
+									alt=""></img>
+								<span>{suggestedItem}</span>
+								<span>price</span>
+							</div>
+						))}
+					</div>
+				</div>
 				<IconButton
 					className="search-bar--find-icon"
 					onClick={() => findProduct()}>
