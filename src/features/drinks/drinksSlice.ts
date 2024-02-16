@@ -6,7 +6,6 @@ export interface DrinksState {
 	categoryRoute: string;
 }
 
-// export usun
 export interface DrinksContainerItem {
 	category: string;
 	items: string[];
@@ -39,6 +38,17 @@ export const initialState: DrinksState = {
 				"MONTEN DJU",
 				"sok",
 				"tymbark",
+			],
+		},
+		{
+			category: "NAPOJE ZERO",
+			items: [
+				"coca cola zero",
+				"pepsi zero",
+				"fanta zero",
+				"sprite zero",
+				"oshe zero",
+				"dzik zero",
 			],
 		},
 		{
@@ -106,15 +116,25 @@ const drinksSlice = createSlice({
 			return state;
 		},
 
-		// replaceDrinks: (state: DrinksState, action: PayloadAction<string[]>) => {
-		// 	// Zastąp cały array nowymi napojami
-		// 	state.drinks = action.payload;
-		// 	// dispatch(allDrinks(["nowy napój 1", "nowy napój 2"])); tak uzyć
-		// },
+		replaceDrinks: (state: DrinksState, action: PayloadAction<string[]>) => {
+			state.drinks = action.payload;
+			// dispatch(allDrinks(["nowy napój 1", "nowy napój 2"]));
+		},
+
 		categoryNav: (state: DrinksState, action: PayloadAction<string>) => {
-			// Zastąp cały array nowymi napojami
 			state.categoryRoute = action.payload;
-			// dispatch(allDrinks("nowy napój 2")); tak uzyć
+			// dispatch(allDrinks("nowy napój 2"));
+		},
+
+		setCategory: (state: DrinksState, action: PayloadAction<string>) => {
+			const drinkName = action.payload;
+			for (const category of state.drinksContainer) {
+				if (category.items.includes(drinkName.trim())) {
+					state.categoryRoute = category.category;
+					return;
+				}
+			}
+			state.categoryRoute = "";
 		},
 
 		resetState: (state: DrinksState) => {
@@ -123,7 +143,13 @@ const drinksSlice = createSlice({
 	},
 });
 
-export const { allDrinks, categoryNav, resetState } = drinksSlice.actions;
+export const {
+	allDrinks,
+	categoryNav,
+	resetState,
+	replaceDrinks,
+	setCategory,
+} = drinksSlice.actions;
 
 // Reducer
 export default drinksSlice.reducer;

@@ -33,7 +33,6 @@ const Products = () => {
 
 	useEffect(() => {
 		console.log("categoryRoute", categoryRoute);
-		console.log("categoryRoute", categoryRoute);
 	}, []);
 
 	// const handleAddToCart = (product) => {
